@@ -1,9 +1,12 @@
-axios.get('https://jsonplaceholder.typicode.com/posts')
+const url = "https://jsonplaceholder.typicode.com/posts?_=" + Date.now();
+
+axios
+  .get(url)
   .then(function (response) {
-    const posts = response.data;     
-    const first10 = posts.slice(0, 10); 
-    const container = document.querySelector('.posts-list');
-    let html = '';
+    const posts = response.data;
+    const first10 = posts.slice(0, 10);
+    const container = document.querySelector(".posts-list");
+    let html = "";
 
     first10.forEach(function (post) {
       html += `
@@ -16,9 +19,9 @@ axios.get('https://jsonplaceholder.typicode.com/posts')
     });
 
     container.innerHTML = html;
-    document.querySelector('.info').innerText =
+    document.querySelector(".info").innerText =
       `Показано ${first10.length} из ${posts.length}`;
   })
   .catch(function (error) {
-    console.log('Ошибка:', error);
+    console.log("Ошибка:", error);
   });
