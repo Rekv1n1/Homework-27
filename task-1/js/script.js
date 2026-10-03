@@ -1,8 +1,11 @@
-axios.get('https://jsonplaceholder.typicode.com/users')
+const url = "https://jsonplaceholder.typicode.com/users?_=" + Date.now();
+
+axios
+  .get(url)
   .then(function (response) {
-    const users = response.data; 
-    const container = document.querySelector('.users-list');
-    let html = '';
+    const users = response.data;
+    const container = document.querySelector(".users-list");
+    let html = "";
 
     users.forEach(function (user) {
       html += `
@@ -17,5 +20,5 @@ axios.get('https://jsonplaceholder.typicode.com/users')
     container.innerHTML = html;
   })
   .catch(function (error) {
-    console.log('Ошибка:', error);
+    console.log("Ошибка:", error);
   });
